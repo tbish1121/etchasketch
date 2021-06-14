@@ -16,8 +16,8 @@
   
   .box-container {
     display: inline-grid;
-    height: 550px;
-    width: 550px;
+    min-height: 550px;
+    min-width: 550px;
     margin: 10px 0px;
   }
   

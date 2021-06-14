@@ -1,10 +1,10 @@
 const boxContainer = document.querySelector('.box-container');
-const resetBtn = document.querySelector('button');
+const resetBtn = document.querySelector('.reset');
 const userInput = prompt('How wide and tall would you like your grid to be?');
 let columns = userInput;
 let rows = userInput;
 
-function createBoxes(columns, rows) {
+function createGrid(columns, rows) {
   for (let i = 0; i < columns * rows; i++) {
     boxContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     boxContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
@@ -15,17 +15,12 @@ function createBoxes(columns, rows) {
     box.addEventListener('mouseover', function() {
       box.style.background = 'black';
     })
+    
+    resetBtn.addEventListener('click', function() {
+        box.style.background = 'white';
+    })  
   }
 }
 
-function resetGrid() {
-  let boxes = boxContainer.children;
-  boxes.style.backgroundColor = 'white';
-}
-
-resetBtn.addEventListener('click', function() {
-  resetGrid();
-})
-
-createBoxes(columns, rows)
+createGrid(columns, rows)
 
