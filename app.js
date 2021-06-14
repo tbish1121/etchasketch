@@ -3,6 +3,9 @@ const resetBtn = document.querySelector('.reset');
 const userInput = prompt('How wide and tall would you like your grid to be?');
 let columns = userInput;
 let rows = userInput;
+function randomColor() {
+    return Math.floor(Math.random()*16777215);
+}
 
 function createGrid(columns, rows) {
   for (let i = 0; i < columns * rows; i++) {
@@ -13,7 +16,7 @@ function createGrid(columns, rows) {
     boxContainer.appendChild(box);
     
     box.addEventListener('mouseover', function() {
-      box.style.background = 'black';
+      box.style.background = '#' + randomColor();
     })
     
     resetBtn.addEventListener('click', function() {
@@ -21,6 +24,7 @@ function createGrid(columns, rows) {
     })  
   }
 }
+
 
 createGrid(columns, rows)
 
