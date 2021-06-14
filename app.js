@@ -1,15 +1,31 @@
-let boxContainer = document.querySelector('.box-container');
-let numInput = prompt('What number would you like?');
-let number = Math.pow(numInput, 2);
+const boxContainer = document.querySelector('.box-container');
+const resetBtn = document.querySelector('button');
+const userInput = prompt('How wide and tall would you like your grid to be?');
+let columns = userInput;
+let rows = userInput;
 
-function createBoxes(number) {
-    for (let i = 0; i < number; i++) {
-        let box = document.createElement('div');
-        box.classList.add('box');
-        boxContainer.style.gridTemplateColumns = `repeat(${number}, 1fr)`;
-        boxContainer.style.gridTemplateRows = `repeat(${number}, 1fr)`;
-        boxContainer.appendChild(box);
-    }
+function createBoxes(columns, rows) {
+  for (let i = 0; i < columns * rows; i++) {
+    boxContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    boxContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+    let box = document.createElement('div');
+    box.classList.add('box');
+    boxContainer.appendChild(box);
+    
+    box.addEventListener('mouseover', function() {
+      box.style.background = 'black';
+    })
+  }
 }
 
-createBoxes(number);
+function resetGrid() {
+  let boxes = boxContainer.children;
+  boxes.style.backgroundColor = 'white';
+}
+
+resetBtn.addEventListener('click', function() {
+  resetGrid();
+})
+
+createBoxes(columns, rows)
+
