@@ -25,7 +25,12 @@
     background-color: white;
     border: 1px solid black;
   }
+
+  .blackSelector {
+    display: flex;
+
+  }
   
-  h2 {
-    padding-top: 15px;
+  h2, p {
+    margin: 10px 10px;
   }

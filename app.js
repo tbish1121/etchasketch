@@ -1,11 +1,22 @@
 const boxContainer = document.querySelector('.box-container');
 const resetBtn = document.querySelector('.reset');
+let blackBtn = document.querySelector('.blackButton');
+let black = false;
 const userInput = prompt('How wide and tall would you like your grid to be?');
 let columns = userInput;
 let rows = userInput;
-function randomColor() {
-    return Math.floor(Math.random()*16777215);
+
+function getBlackColor() {
+  return 'black';
 }
+
+function getRandomColor() {
+  let r = Math.floor(Math.random() * 253);
+  let g = Math.floor(Math.random() * 253);
+  let b = Math.floor(Math.random() * 253);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 
 function createGrid(columns, rows) {
   for (let i = 0; i < columns * rows; i++) {
@@ -16,7 +27,11 @@ function createGrid(columns, rows) {
     boxContainer.appendChild(box);
     
     box.addEventListener('mouseover', function() {
-      box.style.background = '#' + randomColor();
+      if (black == false) {
+      box.style.background = getRandomColor();
+      } else {
+        box.style.background = getBlackColor();
+      }
     })
     
     resetBtn.addEventListener('click', function() {
@@ -25,6 +40,15 @@ function createGrid(columns, rows) {
   }
 }
 
+blackBtn.addEventListener('click', function() {
+  if (black == false) {
+  black = true;
+  blackBtn.innerHTML = '<i class="fas fa-check-circle fa-2x"></i>'
+  } else {
+    black = false;
+    blackBtn.innerHTML = '<i class="far fa-check-circle fa-2x"></i>'
+  }
+})
 
 createGrid(columns, rows)
 
